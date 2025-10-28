@@ -1,7 +1,18 @@
-require 'core.options'
+require 'core.options'
 require 'core.keymaps'
 
-
+CURRNT PLUGINS LIST:
+1.  autocompletion
+2.  autopairs
+3.  comment
+4.  indent-blankline
+5.  lualine
+6.  markdown-preview.lua
+7.  neogit.lua
+8.  neotree
+9.  telescope
+10. treesitter
+11. which-key
 
 -- NOTE: lazy.nvim set-up
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

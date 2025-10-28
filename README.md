@@ -3,3 +3,18 @@
 # this is my version of nvim, that I just recently started working on.
 
 As of now, I am still making some baby steps on vim motions, so I do not have a lot going on, but soon I will indeed have a bit more.
+
+
+# CURRNET PLUGINS LIST:
+1.  autocompletion
+2.  autopairs
+3.  comment
+4.  indent-blankline
+5.  lualine
+6.  markdown-preview.lua
+7.  neogit.lua
+8.  neotree
+9.  telescope
+10. treesitter
+11. which-key
+
