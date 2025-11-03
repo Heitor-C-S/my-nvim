@@ -17,4 +17,5 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 9.  telescope
 10. treesitter
 11. which-key
-
+12. tokyonight (current theme)
+13. typescript-tools
