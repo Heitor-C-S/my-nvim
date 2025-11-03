@@ -16,6 +16,7 @@ require 'core.keymaps'
 --12. tokyo night (theme)
 --13. typescript-tools
 
+vim.env.PATH = vim.env.PATH .. ";C:\\Program Files (x86)\\Lua\\5.1"
 -- NOTE: lazy.nvim set-up
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -28,7 +29,6 @@ end
 
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
 -- Clipboard integration
 -- vim.g.clipboard = {
 --   name = 'win32yank-wsl',
@@ -63,8 +63,4 @@ require('lazy').setup {
   require('plugins.tokyonight'),
   require('plugins.typescript-tools')
 }
-
-
-
-
 
