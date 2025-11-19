@@ -20,3 +20,4 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 2 -- Define o número de espaços que um tab ocupa
 vim.opt.shiftwidth = 2 -- Define o número de espaços usados para cada nível de indentação
 vim.opt.expandtab = true -- Converte tabs em espaços
+

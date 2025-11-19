@@ -4,18 +4,20 @@
 
 As of now, I am still making some baby steps on vim motions, so I do not have a lot going on, but soon I will indeed have a bit more.
 
-
 # CURRNET PLUGINS LIST:
+
 1.  autocompletion
 2.  autopairs
 3.  comment
 4.  indent-blankline
 5.  lualine
-6.  markdown-preview.lua
-7.  neogit.lua
+6.  markdown-preview
+7.  neogit
 8.  neotree
 9.  telescope
 10. treesitter
 11. which-key
 12. tokyonight (current theme)
 13. typescript-tools
+14. conform
+15. mason (and mason-lspconfig)
