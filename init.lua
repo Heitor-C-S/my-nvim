@@ -17,11 +17,34 @@ end
 
 set_working_directory()
 
+-- Force proper encoding for all Lua files
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = "*.lua",
+  callback = function()
+    vim.opt.fileencoding = "utf-8"
+    vim.opt.fileformat = "unix"
+  end,
+})
+
+-- Clean up shada temp files on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.fn.system("del /Q " .. vim.fn.stdpath("data") .. "\\shada\\main.shada.tmp.* 2>nul")
+  end,
+})
+
 -- NOTE: lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	local out = vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		lazyrepo,
+		lazypath,
+	})
 	if vim.v.shell_error ~= 0 then
 		error("Error cloning lazy.nvim:\n" .. out)
 	end
@@ -46,6 +69,8 @@ require("lazy").setup({
 	require("plugins.tokyonight"),
 	require("plugins.typescript-tools"),
 	require("plugins.conform"),
+	require("plugins.session"),
+	-- require("plugins.catppuccin"),
 
 	-- Mason and LSP config
 	{
@@ -56,7 +81,12 @@ require("lazy").setup({
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "ts_ls" },
+				ensure_installed = {
+					"ts_ls", -- FIXED COMMA
+					"html",
+					"cssls",
+					"eslint",
+				},
 				handlers = {
 					function(server_name)
 						require("lspconfig")[server_name].setup({})
@@ -72,4 +102,3 @@ require("lazy").setup({
 		hererocks = true,
 	},
 })
-
