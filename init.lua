@@ -3,16 +3,25 @@ require("core.keymaps")
 
 -- Set default working directory
 local function set_working_directory()
-	local args = vim.fn.argv()
-	local default_dir = "C:/Users/heito/Coisas/Coding"
+  local args = vim.fn.argv()
+  local windows_default = "C:/Users/heito/Coisas/Coding"
+  local home_default = vim.fn.expand("~")
 
-	-- If started with 1 argument that's a directory, do nothing
-	if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then
-		return
-	end
+  -- If started with 1 argument that's a directory (e.g., opening NVIM inside a folder)
+  if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then
+    return
+  end
 
-	-- Otherwise, change to default directory
-	vim.cmd("cd " .. default_dir)
+  -- Decide which directory to use
+  local target_dir = windows_default
+
+  -- If Windows dir does NOT exist, fallback to HOME
+  if vim.fn.isdirectory(target_dir) == 0 then
+    target_dir = home_default
+  end
+
+  -- Change directory
+  vim.cmd("cd " .. target_dir)
 end
 
 set_working_directory()
