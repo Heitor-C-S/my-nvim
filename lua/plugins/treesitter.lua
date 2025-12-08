@@ -1,13 +1,41 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  opts = {
-    ensure_installed = { 'bash', 'html', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }, -- sem lua nem c_sharp
-    auto_install = true,
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = { 'html' },
-    },
-    indent = { enable = true, disable = { 'html' } },
-  },
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
+  config = function()
+    -- treesitter config
+    local config = require("nvim-treesitter.configs")
+    config.setup({
+      ignore_install = {},
+      ensure_installed = {
+        "typst",
+        "purescript",
+        "nim",
+        "vimdoc",
+        "go",
+        "rust",
+        "c",
+        "lua",
+        "python",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "zig",
+        "gleam",
+        "wgsl",
+        "php",
+        "nim",
+        "sql",
+        "markdown",
+        "latex",
+      },
+      highlight = {
+        enable = true,
+      },
+      indent = { enable = true },
+      modules = {},
+      sync_install = true,
+      auto_install = true,
+    })
+  end
 }

@@ -14,7 +14,11 @@ return (
         json = { "prettierd", "prettier" },
         yaml = { "prettierd", "prettier" },
         markdown = { "prettierd", "prettier" },
+        c = {"clang_format"},
+        cpp = {"clang_format"},
+
       },
+
 
       -- Formatar automaticamente ao salvar
       format_on_save = {

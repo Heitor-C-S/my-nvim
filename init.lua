@@ -75,13 +75,15 @@ require("lazy").setup({
 	require("plugins.autopairs"),
 	require("plugins.which-key"),
 	require("plugins.neogit"),
-	require("plugins.tokyonight"),
 	require("plugins.typescript-tools"),
 	require("plugins.conform"),
 	require("plugins.session"),
+  require("plugins.colorscheme"),
 	-- require("plugins.catppuccin"),
+  --	require("plugins.tokyonight"),
+	
 
-	-- Mason and LSP config
+  -- Mason and LSP config
 	{
 		"williamboman/mason.nvim",
 		config = true,
