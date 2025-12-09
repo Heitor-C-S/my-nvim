@@ -17,7 +17,9 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 9.  telescope
 10. treesitter
 11. which-key
-12. tokyonight (current theme)
+12.
 13. typescript-tools
 14. conform
 15. mason (and mason-lspconfig)
+16. bg
+17.
