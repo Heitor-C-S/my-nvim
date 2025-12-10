@@ -1,14 +1,13 @@
 return {
   { "vim-scripts/newsprint.vim" },
   { "gbprod/nord.nvim" },
-  { "slugbyte/lackluster.nvim", },
-  { "vim-scripts/zenesque.vim", },
-  { "jaredgorski/fogbell.vim", },
-  { "oahlen/iceberg.nvim", },
-  { "Skardyy/makurai-nvim", },
+  { "slugbyte/lackluster.nvim" },
+  { "vim-scripts/zenesque.vim" },
+  { "jaredgorski/fogbell.vim" },
+  { "oahlen/iceberg.nvim" },
+  { "Skardyy/makurai-nvim" },
   { "ellisonleao/gruvbox.nvim" },
-  { "jnurmine/Zenburn", },
-  { "RRethy/base16-nvim", },
+  { "jnurmine/Zenburn" },
   {
     "sainnhe/gruvbox-material",
     config = function()
@@ -20,6 +19,37 @@ return {
     opts = {
       bold = false,
     },
+  }, -- <--- CORREÇÃO 1: Adicionada a vírgula que faltava aqui
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        integrations = {
+          treesitter = true,
+          native_lsp = { enabled = true },
+          cmp = true,
+          gitsigns = true,
+          telescope = true,
+          notify = false,
+          mini = false,
+        },
+      })
+    end, -- <--- CORREÇÃO 2: Adicionado o 'end' que faltava para fechar a função
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    transparent = true, -- Sua configuração de transparência
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- CORREÇÃO LÓGICA: Comentei esta linha para não carregar o TokyoNight
+      -- e deixar o Vague funcionar.
+      -- vim.cmd([[colorscheme tokyonight-night]]) 
+    end,
   },
   {
     "zenbones-theme/zenbones.nvim",
@@ -30,12 +60,12 @@ return {
   },
   {
     "vague2k/vague.nvim",
+    lazy = false,
+    priority = 1000,
     config = function()
       require("vague").setup({
-        -- optional configuration here
-        -- transparent = true,
+        transparent = true, -- Sua configuração de transparência
         style = {
-          -- "none" is the same thing as default. But "italic" and "bold" are also valid options
           boolean = "none",
           number = "none",
           float = "none",
@@ -47,32 +77,22 @@ return {
           operators = "none",
           strings = "none",
           variables = "none",
-
-          -- keywords
           keywords = "none",
           keyword_return = "none",
           keywords_loop = "none",
           keywords_label = "none",
           keywords_exception = "none",
-
-          -- builtin
           builtin_constants = "none",
           builtin_functions = "none",
           builtin_types = "none",
           builtin_variables = "none",
         },
         colors = {
-          -- func = "#bc96b0",
-          -- keyword = "#787bab",
-          -- -- string = "#d4bd98",
-          -- string = "#8a739a",
-          -- -- string = "#f2e6ff",
-          -- -- number = "#f2e6ff",
-          -- -- string = "#d8d5b1",
-          -- number = "#8f729e",
-          -- -- type = "#dcaed7",
+          bg = "none",
         },
       })
+      -- CORREÇÃO 3: Comando para efetivamente aplicar o tema Vague
+      vim.cmd.colorscheme("vague")
     end,
   },
 }

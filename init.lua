@@ -79,33 +79,14 @@ require("lazy").setup({
 	require("plugins.conform"),
 	require("plugins.session"),
   require("plugins.colorscheme"),
-	-- require("plugins.catppuccin"),
-  --	require("plugins.tokyonight"),
-	
-
+  require("plugins.bg"),
+  require("plugins.yazi"),
+  require("plugins.mason"),
+  require("plugins.mason-lspconfig"),
+  require("plugins.fire-nvim"),
+  require("plugins.markdown-preview"),
+  require("plugins.zoxide"),
   -- Mason and LSP config
-	{
-		"williamboman/mason.nvim",
-		config = true,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"ts_ls", -- FIXED COMMA
-					"html",
-					"cssls",
-					"eslint",
-				},
-				handlers = {
-					function(server_name)
-						require("lspconfig")[server_name].setup({})
-					end,
-				},
-			})
-		end,
-	},
 }, {
 	-- Lazy options
 	rocks = {
