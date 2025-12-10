@@ -13,6 +13,8 @@ vim.opt.cursorline = true
 -- Save undo history
 vim.opt.undofile = true
 
+vim.opt.clipboard = "unnamedplus"
+
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -21,3 +23,7 @@ vim.opt.tabstop = 2 -- Define o número de espaços que um tab ocupa
 vim.opt.shiftwidth = 2 -- Define o número de espaços usados para cada nível de indentação
 vim.opt.expandtab = true -- Converte tabs em espaços
 
+vim.cmd [[
+  hi Normal guibg=NONE ctermbg=NONE
+  hi NonText guibg=NONE ctermbg=NONE
+]]
