@@ -69,7 +69,6 @@ require("lazy").setup({
 	-- Plugins configurations
 	require("plugins.autocompletion"),
 	require("plugins.lsp"),
-	require("plugins.nvim-cmp"),
 	require("plugins.neotree"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
