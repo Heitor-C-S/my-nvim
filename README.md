@@ -26,4 +26,5 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 17. auto-session
 18. tailwind
 19. yazi
+20. todo
 ```
