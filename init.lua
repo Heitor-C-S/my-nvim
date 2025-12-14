@@ -35,10 +35,12 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   end,
 })
 
--- Clean up shada temp files on startup
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    vim.fn.system("del /Q " .. vim.fn.stdpath("data") .. "\\shada\\main.shada.tmp.* 2>nul")
+    -- Fix: Convert path separators and add quotes for Windows command line
+    local shada_path = vim.fn.stdpath("data"):gsub("/", "\\")
+    local cmd = 'del /Q "' .. shada_path .. '\\shada\\main.shada.tmp.*" 2>nul'
+    vim.fn.system(cmd)
   end,
 })
 
@@ -86,6 +88,7 @@ require("lazy").setup({
   require("plugins.fire-nvim"),
   require("plugins.markdown-preview"),
   require("plugins.zoxide"),
+  require("plugins.todo"), 
   -- Mason and LSP config
 }, {
 	-- Lazy options
