@@ -42,21 +42,14 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    transparent = true, -- Sua configuração de transparência
     priority = 1000,
-    opts = {},
-    config = function()
-      -- CORREÇÃO LÓGICA: Comentei esta linha para não carregar o TokyoNight
-      -- e deixar o Vague funcionar.
-      -- vim.cmd([[colorscheme tokyonight-night]]) 
+    opts = {transparent = true},
+    config = function()  
+    require("tokyonight").setup({
+        transparent = true, -- Sua configuração de transparência
+    })
+      --  vim.cmd([[colorscheme tokyonight-night]]) 
     end,
-  },
-  {
-    "zenbones-theme/zenbones.nvim",
-    dependencies = "rktjmp/lush.nvim",
-    lazy = false,
-    priority = 1000,
-    italic = false,
   },
   {
     "vague2k/vague.nvim",
