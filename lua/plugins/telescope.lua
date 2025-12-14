@@ -81,5 +81,12 @@ defaults = {
         prompt_title = "Live Grep in Open Files",
       })
     end, { desc = "[S]earch [/] in Open Files" })
+
+    vim.keymap.set("n", "<leader>tc", function()
+      require("telescope.builtin").colorscheme()
+      end, { desc = "[T]elescope [C]olorschemes "}
+    )
+
+
   end,
 }
