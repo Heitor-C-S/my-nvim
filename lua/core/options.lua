@@ -23,7 +23,15 @@ vim.opt.tabstop = 2 -- Define o número de espaços que um tab ocupa
 vim.opt.shiftwidth = 2 -- Define o número de espaços usados para cada nível de indentação
 vim.opt.expandtab = true -- Converte tabs em espaços
 
-vim.cmd [[
-  hi Normal guibg=NONE ctermbg=NONE
-  hi NonText guibg=NONE ctermbg=NONE
-]]
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    local hl_groups = {
+      "Normal", "NormalNC", "SignColumn", "MsgArea", 
+      "TelescopeNormal", "TelescopeBorder", "EndOfBuffer",
+    }
+    for _, name in ipairs(hl_groups) do
+      vim.api.nvim_set_hl(0, name, { bg = "NONE", ctermbg = "NONE" })
+    end
+  end,
+})
