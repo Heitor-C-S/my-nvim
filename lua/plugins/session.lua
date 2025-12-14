@@ -3,90 +3,136 @@ return {
   {
     "rmagatti/auto-session",
     lazy = false,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
+    keys = {
+    -- <leader>qs (Quick Session) para buscar sessões
+     { "<leader>qs", "<cmd>AutoSession search<cr>", desc = "Buscar Sessão (Session Lens)" },
+    -- <leader>qw (Quick Write) para salvar manualmente
+     { "<leader>qw", "<cmd>AutoSession save <cr>", desc = "Salvar Sessão Atual" },
     },
-    config = function()
-      local auto_session = require("auto-session")
 
-      -- Create sessions directory if it doesn't exist
-      local session_dir = vim.fn.stdpath("data") .. "\\sessions"
-      vim.fn.mkdir(session_dir, "p")
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      -- Configuração corrigida de diretórios suprimidos para Windows
+      suppressed_dirs = { "~/", "~/Downloads", "C:/", "~/Windows" },
+      
+      -- log_level = 'debug',
+      defaults = {
+        -- Saving / restoring
+        enabled = true,
+        auto_save = true,
+        auto_restore = true,
+        auto_create = true,
+        auto_restore_last_session = false,
+        cwd_change_handling = false,
+        single_session_mode = false,
 
-      auto_session.setup({
+        -- Filtering
+        -- suppressed_dirs = nil, -- Removido pois já definimos no nível superior (opts.suppressed_dirs)
+        allowed_dirs = nil,
+        
+        -- CORREÇÃO: Adicionado chaves {} ao redor da lista
+        bypass_save_filetypes = { "alpha", "neotree" }, 
+        
+        close_filetypes_on_save = { "checkhealth" },
+        close_unsupported_windows = true,
+        preserve_buffer_on_restore = nil,
+
+        -- Git / Session naming
+        git_use_branch_name = false,
+        git_auto_restore_on_branch_change = false,
+        custom_session_tag = nil,
+
+        -- Deleting
+        auto_delete_empty_sessions = true,
+        purge_after_minutes = nil,
+
+        -- Saving extra data
+        save_extra_data = nil,
+        restore_extra_data = nil,
+
+        -- Argument handling
+        args_allow_single_directory = true,
+        args_allow_files_auto_save = false,
+
+        -- Misc
         log_level = "error",
-        auto_session_root_dir = session_dir,
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-        auto_session_use_git_branch = true,
-        auto_session_enable_last_session = false,
-        bypass_save_filetypes = { "alpha", "dashboard" },
-        pre_save_cmds = { "Neotree close" },
-        post_restore_cmds = { "Neotree filesystem show" },
-      })
+        root_dir = vim.fn.stdpath("data") .. "/sessions/",
+        show_auto_restore_notif = false,
+        restore_error_handler = nil,
+        continue_restore_on_error = true,
+        lsp_stop_on_restore = false,
+        lazy_support = true,
+        legacy_cmds = true,
 
-      -- Telescope integration (corrected)
-      vim.keymap.set("n", "<leader>sss", function()
-        local has_telescope, telescope = pcall(require, "telescope")
-        if has_telescope then
-          telescope.extensions["session-lens"].search_session()
-        else
-          vim.notify("Telescope not found", vim.log.levels.ERROR)
-        end
-      end, { desc = "[S]earch [S]e[s]sions" })
+        ---@type SessionLens
+        session_lens = {
+          picker = "telescope",
+          load_on_setup = true,
+          picker_opts = {
+            border = true,
+            layout_config = {
+              width = 0.8,
+              height = 0.5,
+            },
+          },
+          previewer = "summary",
 
-      -- Delete current session
-      vim.keymap.set("n", "<leader>sd", function()
-        auto_session.DeleteSession()
-      end, { desc = "Delete current session" })
+          ---@type SessionLensMappings
+          mappings = {
+            delete_session = { "i", "<C-d>" },
+            alternate_session = { "i", "<C-s>" },
+            copy_session = { "i", "<C-y>" },
+          },
 
-      -- Manual restore with better error handling
-      vim.keymap.set("n", "<leader>sr", function()
-        local session_name = auto_session.get_session_name()
-        if session_name and session_name ~= "" then
-          vim.cmd("AutoSession restore")
-        else
-          vim.notify("No session found for this directory", vim.log.levels.INFO)
-        end
-      end, { desc = "Restore session manually" })
+          ---@type SessionControl
+          session_control = {
+            control_dir = vim.fn.stdpath("data") .. "/auto_session/",
+            control_filename = "session_control.json",
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "goolord/alpha-nvim",
+    dependencies = {
+      "echasnovski/mini.icons",
+    },
+
+    config = function()
+      local alpha = require("alpha")
+      local dashboard = require("alpha.themes.dashboard")
+
+      dashboard.section.header.val = {
+        [[ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⠀⡀⢀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ]],
+        [[ ⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⣽⠃⠀⠀⠀⢼⠻⣿⣿⣟⣿⣿⣿⣿⣶⣶⣶⣶⣤⣤⣤⣤⣤ ]],
+        [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠛⡶⢶⢺⠁⠀⠈⢿⣿⣿⣿⣿⣿⣿⣏⣿⣿⣿⣿⣿⣿⣿ ]],
+        [[ ⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⣤⠀⣀⣠⡛⣣⡀⠀⠈⢿⣿⣿⣻⣏⣿⣿⣿⣿⣿⣿⣟⣿⠿ ]],
+        [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⣳⣶⣿⣿⣷⣾⠱⠀⠀⠊⢿⠿⠿⢛⣽⣿⡿⢿⣿⣟⠿⠿⠿ ]],
+        [[ ⠉⠉⠉⠛⠛⠛⠋⠛⠛⠛⣧⠀⡀⠀⠀⢿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠅⢀⢀⡀ ]],
+        [[ ⠔⠄⢀⡀⠀⠀⠀⠄⠐⠸⠿⡀⠀⠀⠀⢘⣿⢷⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠰⣠⣇ ]],
+        [[ ⣷⣆⣴⣮⢻⡲⡲⠀⠁⠀⠀⠀⠀⠀⠀⠹⡿⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣀⡘⢷⣏ ]],
+        [[ ⣿⣿⣿⣗⠿⢈⠁⡀⠀⠁⠀⠀⠀⠀⠀⠀⠉⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢀⠄⠀⠄⠈⢿⣮⢿ ]],
+        [[ ⣿⣟⡿⣾⠀⠀⠀⠀⠀⠀⠀⢀⡤⠄⠀⠀⠀⠀⠸⠁⢠⣦⣤⢀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠈⣿⠀ ]],
+        [[ ⣿⣿⠏⠁⢀⡇⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠘⡏⣷⣵⡻⠃⠄⢴⣆⠀⠀⠀⠀⠀⠀⠀⠰⠀⣆⣷⣿ ]],
+        [[ ⣿⡿���⠗⠀⢠⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⢠⣤⣄⢰⣶⢯⣤⡈⠋⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⣿⣼ ]],
+      }
+
+      dashboard.section.buttons.val = {
+        -- dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("b", "λ  > Browse files", ":Yazi<CR>"),
+        dashboard.button("z", "λ  > Browse Directories", ":Telescope zoxide list<CR>"),
+        dashboard.button("f", "λ  > Find file", ":Telescope find_files<CR>"),
+        dashboard.button("r", "λ  > Recent", ":Telescope oldfiles<CR>"),
+        dashboard.button("s", "λ  > Search Sessions", ":AutoSession search<CR>"),
+      }
+
+      alpha.setup(dashboard.opts)
     end,
   },
-
-{
-  "goolord/alpha-nvim",
-  dependencies = {
-    "echasnovski/mini.icons",
-  },
-
-  config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
-
-    dashboard.section.header.val = {
-      [[ ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⠀⡀⢀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ]],
-      [[ ⣶⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⣽⠃⠀⠀⠀⢼⠻⣿⣿⣟⣿⣿⣿⣿⣶⣶⣶⣶⣤⣤⣤⣤⣤ ]],
-      [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠛⡶⢶⢺⠁⠀⠈⢿⣿⣿⣿⣿⣿⣿⣏⣿⣿⣿⣿⣿⣿⣿ ]],
-      [[ ⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⣤⠀⣀⣠⡛⣣⡀⠀⠈⢿⣿⣿⣻⣏⣿⣿⣿⣿⣿⣿⣟⣿⠿ ]],
-      [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⣳⣶⣿⣿⣷⣾⠱⠀⠀⠊⢿⠿⠿⢛⣽⣿⡿⢿⣿⣟⠿⠿⠿ ]],
-      [[ ⠉⠉⠉⠛⠛⠛⠋⠛⠛⠛⣧⠀⡀⠀⠀⢿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠅⢀⢀⡀ ]],
-      [[ ⠔⠄⢀⡀⠀⠀⠀⠄⠐⠸⠿⡀⠀⠀⠀⢘⣿⢷⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠰⣠⣇ ]],
-      [[ ⣷⣆⣴⣮⢻⡲⡲⠀⠁⠀⠀⠀⠀⠀⠀⠹⡿⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣀⡘⢷⣏ ]],
-      [[ ⣿⣿⣿⣗⠿⢈⠁⡀⠀⠁⠀⠀⠀⠀⠀⠀⠉⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢀⠄⠀⠄⠈⢿⣮⢿ ]],
-      [[ ⣿⣟⡿⣾⠀⠀⠀⠀⠀⠀⠀⢀⡤⠄⠀⠀⠀⠀⠸⠁⢠⣦⣤⢀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠈⣿⠀ ]],
-      [[ ⣿⣿⠏⠁⢀⡇⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠘⡏⣷⣵⡻⠃⠄⢴⣆⠀⠀⠀⠀⠀⠀⠀⠰⠀⣆⣷⣿ ]],
-      [[ ⣿⡿⣻⠗⠀⢠⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⢠⣤⣄⢰⣶⢯⣤⡈⠋⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⣿⣼ ]],
-    }
-
-    dashboard.section.buttons.val = {
-      -- dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("b", "λ  > Browse files", ":Yazi<CR>"),
-      dashboard.button("z", "λ  > Browse Directories", ":Telescope zoxide list<CR>"),
-      dashboard.button("f", "λ  > Find file", ":Telescope find_files<CR>"),
-      dashboard.button("r", "λ  > Recent", ":Telescope oldfiles<CR>"),
-    }
-
-    alpha.setup(dashboard.opts)
-  end,
-},
 
   -- Optional: Projects extension for Telescope
   {
