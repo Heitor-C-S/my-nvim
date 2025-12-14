@@ -3,45 +3,45 @@ require("core.keymaps")
 
 -- Set default working directory
 local function set_working_directory()
-  local args = vim.fn.argv()
-  local windows_default = "C:/Users/heito/Coisas/Coding"
-  local home_default = vim.fn.expand("~")
+	local args = vim.fn.argv()
+	local windows_default = "C:/Users/heito/Coisas/Coding"
+	local home_default = vim.fn.expand("~")
 
-  -- If started with 1 argument that's a directory (e.g., opening NVIM inside a folder)
-  if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then
-    return
-  end
+	-- If started with 1 argument that's a directory (e.g., opening NVIM inside a folder)
+	if #args == 1 and vim.fn.isdirectory(args[1]) == 1 then
+		return
+	end
 
-  -- Decide which directory to use
-  local target_dir = windows_default
+	-- Decide which directory to use
+	local target_dir = windows_default
 
-  -- If Windows dir does NOT exist, fallback to HOME
-  if vim.fn.isdirectory(target_dir) == 0 then
-    target_dir = home_default
-  end
+	-- If Windows dir does NOT exist, fallback to HOME
+	if vim.fn.isdirectory(target_dir) == 0 then
+		target_dir = home_default
+	end
 
-  -- Change directory
-  vim.cmd("cd " .. target_dir)
+	-- Change directory
+	vim.cmd("cd " .. target_dir)
 end
 
 set_working_directory()
 
 -- Force proper encoding for all Lua files
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "*.lua",
-  callback = function()
-    vim.opt.fileencoding = "utf-8"
-    vim.opt.fileformat = "unix"
-  end,
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.lua",
+	callback = function()
+		vim.opt.fileencoding = "utf-8"
+		vim.opt.fileformat = "unix"
+	end,
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    -- Fix: Convert path separators and add quotes for Windows command line
-    local shada_path = vim.fn.stdpath("data"):gsub("/", "\\")
-    local cmd = 'del /Q "' .. shada_path .. '\\shada\\main.shada.tmp.*" 2>nul'
-    vim.fn.system(cmd)
-  end,
+	callback = function()
+		-- Fix: Convert path separators and add quotes for Windows command line
+		local shada_path = vim.fn.stdpath("data"):gsub("/", "\\")
+		local cmd = 'del /Q "' .. shada_path .. '\\shada\\main.shada.tmp.*" 2>nul'
+		vim.fn.system(cmd)
+	end,
 })
 
 -- NOTE: lazy.nvim setup
@@ -68,6 +68,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- Plugins configurations
 	require("plugins.autocompletion"),
+	require("plugins.lsp"),
+	require("plugins.nvim-cmp"),
 	require("plugins.neotree"),
 	require("plugins.lualine"),
 	require("plugins.treesitter"),
@@ -80,16 +82,14 @@ require("lazy").setup({
 	require("plugins.typescript-tools"),
 	require("plugins.conform"),
 	require("plugins.session"),
-  require("plugins.colorscheme"),
-  require("plugins.bg"),
-  require("plugins.yazi"),
-  require("plugins.mason"),
-  require("plugins.mason-lspconfig"),
-  require("plugins.fire-nvim"),
-  require("plugins.markdown-preview"),
-  require("plugins.zoxide"),
-  require("plugins.todo"), 
-  -- Mason and LSP config
+	require("plugins.colorscheme"),
+	require("plugins.bg"),
+	require("plugins.yazi"),
+	require("plugins.fire-nvim"),
+	require("plugins.markdown-preview"),
+	require("plugins.zoxide"),
+	require("plugins.todo"),
+	-- Mason and LSP config
 }, {
 	-- Lazy options
 	rocks = {
