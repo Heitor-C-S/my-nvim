@@ -88,7 +88,9 @@ require("lazy").setup({
 	require("plugins.markdown-preview"),
 	require("plugins.zoxide"),
 	require("plugins.todo"),
-	-- Mason and LSP config
+	require("plugins.lsp-signature"),
+	require("plugins.neoscroll"),
+	require("plugins.autotag"),
 }, {
 	-- Lazy options
 	rocks = {
