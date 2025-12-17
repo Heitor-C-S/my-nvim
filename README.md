@@ -26,5 +26,9 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 17. auto-session
 18. tailwind
 19. yazi
-20. todo
+20. todo -> by myself! (and my ai friends)
+21. lsp-signature
+22. zoxide
+23. neoscroll (sometimes)
+24. autotag
 ```
