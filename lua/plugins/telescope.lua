@@ -108,7 +108,7 @@ return {
 			local home = vim.fn.expand("~")
 			builtin.find_files({
 				prompt_title = "📘 Meu Glossário Neovim",
-				search_dirs = { home .. "/AppData/Local/nvim/gloss" },
+				search_dirs = { home .. "/.config/nvim/gloss" },
 			})
 		end, { desc = "[S]earch [G]lossário" })
 
@@ -163,7 +163,7 @@ return {
 		end, { desc = "Remove todos os terminais finalizados" })
 
 		-- Atalho rápido para limpar terminais mortos
-		vim.keymap.set("n", "<leader>tc", ":ClearDeadTerms<CR>", { desc = "[T]erminal [C]lear inativos" })
+		vim.keymap.set("n", "<leader>cit", ":ClearDeadTerms<CR>", { desc = "[C]lear [T]erminal [I]nativos" })
 
 		-- END CHANGE
 	end,

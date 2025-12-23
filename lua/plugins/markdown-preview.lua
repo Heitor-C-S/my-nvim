@@ -1,11 +1,14 @@
-return{
-  'iamcco/markdown-preview.nvim',
-  build = function()
-    vim.fn["mkdp#util#install"]()
-  end,
-  ft = { "markdown" },
+-- ~/.config/nvim/lua/plugins/markdown-preview.lua
+return {
+  "toppair/peek.nvim",
+  event = { "VeryLazy" },
+  build = "deno task --quiet build:fast",
   config = function()
-    vim.g.mkdp_auto_start = 1
-    vim.g.mkdp_browser = ""
+    require("peek").setup({
+      auto_load = true,
+      app = "browser",
+      port = 3001,  -- CHANGE THIS to your available port
+    })
+    vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
   end,
 }
