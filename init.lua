@@ -5,6 +5,7 @@ require("core.keymaps")
 local function set_working_directory()
 	local args = vim.fn.argv()
 	local windows_default = "C:/Users/heito/Coisas/Coding"
+	local ubuntu_default = "/home/heitor/projects"
 	local home_default = vim.fn.expand("~")
 
 	-- If started with 1 argument that's a directory (e.g., opening NVIM inside a folder)
@@ -91,6 +92,7 @@ require("lazy").setup({
 	require("plugins.lsp-signature"),
 	require("plugins.neoscroll"),
 	require("plugins.autotag"),
+	require("plugins.fine-cmdline"),
 }, {
 	-- Lazy options
 	rocks = {
