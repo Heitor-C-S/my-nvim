@@ -11,10 +11,10 @@ local function set_working_directory()
 
   -- 2. Lista de prioridades de diretórios
   local preferred_paths = {
-    "C:/Users/heito/Coisas/Coding", -- Windows
-    "/home/heitors/Projects",     -- CachyOS (sem a barra final é mais seguro)
-    "/home/heitor/projects",      -- Ubuntu
-    vim.fn.expand("~"),           -- Fallback final (Home)
+    --   "C:/Users/heito/Coisas/Coding", -- Windows
+    "/home/heitors/Projects", -- CachyOS (sem a barra final é mais seguro)
+    --   "/home/heitor/projects",      -- Ubuntu
+    vim.fn.expand("~"),     -- Fallback final (Home)
   }
 
   -- 3. Loop para encontrar o primeiro caminho válido
