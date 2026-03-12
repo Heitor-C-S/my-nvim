@@ -1,73 +1,59 @@
+-- lua/plugins/lsp.lua
 return {
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
-	},
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+      "folke/lazydev.nvim", -- Garante que o lazydev carregue antes do LSP
+    },
+    config = function()
+      local lspconfig = require("lspconfig")
+      local mason_lspconfig = require("mason-lspconfig")
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"neovim/nvim-lspconfig",
-		},
-		config = function()
-			local mason_lspconfig = require("mason-lspconfig")
-			local lspconfig = require("lspconfig")
+      -- Integração com nvim-cmp (autocompletar)
+      local ok, cmp = pcall(require, "cmp_nvim_lsp")
+      if ok then
+        capabilities = cmp.default_capabilities(capabilities)
+      end
 
-			-- Capabilities (for nvim-cmp, if installed)
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			local ok, cmp = pcall(require, "cmp_nvim_lsp")
-			if ok then
-				capabilities = cmp.default_capabilities(capabilities)
-			end
+      mason_lspconfig.setup({
+        ensure_installed = { "lua_ls", "clangd", "pyright", "ts_ls", "html", "cssls" },
+        handlers = {
+          -- Handler padrão
+          function(server_name)
+            lspconfig[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
 
-			mason_lspconfig.setup({
-				ensure_installed = {
-					-- Web
-					"ts_ls",
-					"html",
-					"cssls",
-					"eslint",
-					"clangd",
-					"pyright",
-					"marksman",
-				},
-				-- FIX: Define handlers inside the setup table
-				handlers = {
-					-- Default handler
-					function(server_name)
-						lspconfig[server_name].setup({
-							capabilities = capabilities,
-						})
-					end,
-
-					-- clangd (C / C++)
-					["clangd"] = function()
-						lspconfig.clangd.setup({
-							capabilities = capabilities,
-							cmd = { "clangd", "--background-index" },
-						})
-					end,
-
-					-- Pyright (Python)
-					["pyright"] = function()
-						lspconfig.pyright.setup({
-							capabilities = capabilities,
-							settings = {
-								python = {
-									analysis = {
-										typeCheckingMode = "basic",
-										autoSearchPaths = true,
-										useLibraryCodeForTypes = true,
-									},
-								},
-							},
-						})
-					end,
-				},
-			})
-		end,
-	},
+          ["ts_ls"] = function()
+            return
+          end,
+          -- Configuração do Lua LS simplificada
+          -- O lazydev.nvim vai injetar o "vim" global automaticamente aqui
+          ["lua_ls"] = function()
+            lspconfig.lua_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" },
+                  },
+                  telemetry = { enable = false },
+                },
+              },
+            })
+          end,
+        },
+      })
+    end,
+  },
 }

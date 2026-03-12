@@ -92,7 +92,6 @@ local function toggle_checkbox_or_close(win, buf)
   vim.api.nvim_win_hide(win)
 end
 
-
 local function insert_task_below(win, buf)
   local row = vim.api.nvim_win_get_cursor(win)[1]
   vim.api.nvim_buf_set_lines(buf, row, row, false, { "- [ ] " })
@@ -145,11 +144,7 @@ local function toggle_todo(opts)
   vim.wo[win].wrap = true
 
   -- Transparent background (theme controlled)
-  vim.api.nvim_set_option_value(
-    "winhighlight",
-    "Normal:Normal,FloatBorder:FloatBorder",
-    { win = win }
-  )
+  vim.api.nvim_set_option_value("winhighlight", "Normal:Normal,FloatBorder:FloatBorder", { win = win })
 
   -- Keymaps
   vim.keymap.set("n", "<Tab>", function()
@@ -160,11 +155,9 @@ local function toggle_todo(opts)
     vim.api.nvim_win_hide(win)
   end, { buffer = buf, silent = true, nowait = true })
 
-  
   vim.keymap.set("n", "<leader>nt", function()
     insert_task_below(win, buf)
   end, { buffer = buf, silent = true })
-
 end
 
 -- ----------------------------
@@ -172,8 +165,7 @@ end
 -- ----------------------------
 function M.setup(opts)
   opts = opts or {}
-  opts.target_file = opts.target_file
-    or (vim.fn.stdpath("data") .. "/todo.md")
+  opts.target_file = opts.target_file or (vim.fn.stdpath("data") .. "/todo.md")
 
   vim.api.nvim_create_user_command("Todo", function()
     toggle_todo(opts)

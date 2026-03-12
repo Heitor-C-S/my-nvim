@@ -1,18 +1,27 @@
+-- lua/plugins/lualine.lua
+
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
+		-- Configuração de Diagnósticos: Ondinhas apenas para Erros e Avisos
+		vim.diagnostic.config({
+			underline = { severity = { min = vim.diagnostic.severity.WARN } },
+			signs = { severity = { min = vim.diagnostic.severity.WARN } },
+			virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
+		})
+
+		-- Definição dos componentes da barra
 		local mode = {
 			"mode",
 			fmt = function(str)
 				return " " .. str
-				-- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
 			end,
 		}
 
 		local filename = {
 			"filename",
-			file_status = true, -- displays file status (readonly status, modified status)
-			path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+			file_status = true,
+			path = 1,
 		}
 
 		local hide_in_width = function()
@@ -25,29 +34,22 @@ return {
 			sections = { "error", "warn" },
 			symbols = { error = " ", warn = " ", info = " ", hint = " " },
 			colored = false,
-			update_in_insert = false,
-			always_visible = false,
 			cond = hide_in_width,
 		}
 
 		local diff = {
 			"diff",
-			colored = false,
-			symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+			symbols = { added = " ", modified = " ", removed = " " },
 			cond = hide_in_width,
 		}
 
+		-- Setup do Lualine
 		require("lualine").setup({
 			options = {
-				icons_enabled = true,
-				theme = "vague", -- Set theme based on environment variable
-				-- Some useful glyphs:
-				-- https://www.nerdfonts.com/cheat-sheet
-				--        
+				theme = "vague",
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
 				disabled_filetypes = { "alpha", "neo-tree" },
-				always_divide_middle = true,
 			},
 			sections = {
 				lualine_a = { mode },
@@ -62,15 +64,6 @@ return {
 				lualine_y = { "location" },
 				lualine_z = { "progress" },
 			},
-			inactive_sections = {
-				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { { "filename", path = 1 } },
-				lualine_x = { { "location", padding = 0 } },
-				lualine_y = {},
-				lualine_z = {},
-			},
-			tabline = {},
 			extensions = { "fugitive" },
 		})
 	end,

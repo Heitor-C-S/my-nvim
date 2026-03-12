@@ -123,6 +123,9 @@ return {
 				[[⠀⠀⠀⠀⠀⠀⠈⣿⣦⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⣴⣿⠁⠀⠀⠀⠀⠀]],
 				[[⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀]],
 			}
+
+			dashboard.section.header.opts.hl = "AlphaButtons"
+
 			dashboard.section.buttons.val = {
 				-- dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
 				dashboard.button("b", "λ  > Browse files", ":Yazi<CR>"),

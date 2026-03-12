@@ -1,14 +1,24 @@
--- ~/.config/nvim/lua/plugins/markdown-preview.lua
 return {
-  "toppair/peek.nvim",
-  event = { "VeryLazy" },
-  build = "deno task --quiet build:fast",
-  config = function()
-    require("peek").setup({
-      auto_load = true,
-      app = "browser",
-      port = 3001,  -- CHANGE THIS to your available port
-    })
-    vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-  end,
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = "cd app && npm install",
+
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- se você usa ícones
+    ft = { "markdown" },
+    opts = {
+      -- Configuração padrão já é excelente
+      heading = {
+        sign = false, -- desativa ícones na margem esquerda se preferir
+        icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " }, -- Ícones nerdfont para H1-H6
+      },
+    },
+  },
 }

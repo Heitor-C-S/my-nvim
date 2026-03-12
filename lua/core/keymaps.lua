@@ -1,4 +1,7 @@
 --oi
+
+local opts = { noremap = true, silent = true }
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -10,20 +13,35 @@ vim.keymap.set("n", "<M-q>", "<cmd> exit <CR>", opts)
 
 -- exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], {
-	desc = "Exit terminal mode",
+  desc = "Exit terminal mode",
 })
 
 vim.keymap.set("n", "<leader>td", "<cmd>:Todo <CR>", { desc = "Open [t]o[d]o file.", silent = true })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
 -- create a new terminal under the current buffer
 vim.keymap.set(
-	"n",
-	"<leader>tj",
-	"<cmd>:sp<CR> <C-w>j <cmd>:terminal <CR>",
-	{ desc = "Open horizontal terminal", silent = true }
+  "n",
+  "<leader>tj",
+  "<cmd>:sp<CR> <C-w>j <cmd>:terminal <CR>",
+  { desc = "Open horizontal terminal", silent = true }
 )
 -- navegate between splits
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts) -- Ir para o split à esque
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts) -- Ir para o split ac
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts) -- Ir para o split aba
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts) -- Ir para o split à dira
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts) -- Ir para o split à esquerda
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts) -- Ir para o split acima
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts) -- Ir para o split abaixo
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts) -- Ir para o split à direita
+
+-- delete current buffer
+vim.keymap.set("n", "<leader>bdf", "<cmd>bd!<CR>", { desc = "[B]uffer [D]elete [F]orce (!)" })
+-- create new empty buffer
+vim.keymap.set("n", "<leader>bn", "<cmd>bn<CR>", { desc = "Create [B]uffer [N]ew" })
+
+-- Docker Refresh (need a compose.yaml file)
+-- Use o comando completo para evitar ambiguidade com outros plugins
+vim.keymap.set(
+  "n",
+  "<leader>rd",
+  "<cmd>!docker compose up -d --build --remove-orphans<CR>",
+  { desc = "Refresh Docker", silent = true }
+)
