@@ -22,6 +22,9 @@ vim.keymap.set(
 	"<cmd>:sp<CR> <C-w>j <cmd>:terminal <CR>",
 	{ desc = "Open horizontal terminal", silent = true }
 )
+
+vim.keymap.set("n", "<leader>bd", "<cmd>:bdelete<CR>", { desc = "[B]uffer [D]elete" })
+
 -- navegate between splits
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts) -- Ir para o split à esque
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts) -- Ir para o split ac

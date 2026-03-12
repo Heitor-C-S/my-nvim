@@ -93,7 +93,6 @@ require("lazy").setup({
 	require("plugins.neoscroll"),
 	require("plugins.autotag"),
 	require("plugins.fine-cmdline"),
-	require("plugins.codeium"),
 }, {
 	-- Lazy options
 	rocks = {
