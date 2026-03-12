@@ -95,7 +95,6 @@ require("lazy").setup({
   require("plugins.neoscroll"),
   require("plugins.autotag"),
   require("plugins.fine-cmdline"),
-  --	require("plugins.codeium"),
   require("plugins.lazydev"),
 }, {
   -- Lazy options
