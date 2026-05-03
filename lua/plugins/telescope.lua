@@ -6,9 +6,9 @@ return {
 		"nvim-lua/plenary.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
+			build = "cmake",
 			cond = function()
-				return vim.fn.executable("make") == 1
+				return vim.fn.executable("cmake") == 1
 			end,
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
