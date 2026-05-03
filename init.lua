@@ -87,7 +87,6 @@ require("lazy").setup({
 	require("plugins.yazi"),
 	require("plugins.fire-nvim"),
 	require("plugins.markdown-preview"),
-	require("plugins.zoxide"),
 	require("plugins.todo"),
 	require("plugins.lsp-signature"),
 	require("plugins.neoscroll"),

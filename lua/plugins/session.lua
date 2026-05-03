@@ -126,7 +126,6 @@ return {
 			dashboard.section.buttons.val = {
 				-- dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
 				dashboard.button("b", "λ  > Browse files", ":Yazi<CR>"),
-				dashboard.button("z", "λ  > Browse Directories", ":Telescope zoxide list<CR>"),
 				dashboard.button("f", "λ  > Find file", ":Telescope find_files<CR>"),
 				dashboard.button("r", "λ  > Recent", ":Telescope oldfiles<CR>"),
 				dashboard.button("s", "λ  > Search Sessions", ":AutoSession search<CR>"),
