@@ -89,7 +89,7 @@ require("lazy").setup({
 	require("plugins.zoxide"),
 	require("plugins.todo"),
 	require("plugins.lsp-signature"),
-	require("plugins.neoscroll"),
+	--	require("plugins.neoscroll"),
 	require("plugins.autotag"),
 }, {
 	-- Lazy options
