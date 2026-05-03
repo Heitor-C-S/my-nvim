@@ -32,3 +32,41 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 23. neoscroll (sometimes)
 24. autotag
 ```
+
+
+## Mason installed stuff:
+
+```
+  Installed
+    ◍ jsonlint (keywords: json)
+    ◍ clang-format (keywords: c, c#, c++, json, java, javascript)
+    ◍ pylint (keywords: python)
+    ◍ htmlhint (keywords: html)
+    ◍ stylelint (keywords: css, sass, scss, less)
+    ◍ cssmodules-language-server cssmodules_ls (keywords: css)
+    ◍ css-variables-language-server css_variables (keywords: css, scss, less)
+    ◍ tailwindcss-language-server tailwindcss (keywords: css)
+    ◍ bash-debug-adapter (keywords: bash)
+    ◍ clangd (keywords: c, c++)
+    ◍ cpptools (keywords: c, c++, rust)
+    ◍ css-lsp cssls (keywords: css, scss, less)
+    ◍ eslint-lsp eslint (keywords: javascript, typescript)
+    ◍ html-lsp html (keywords: html)
+    ◍ js-debug-adapter (keywords: javascript, typescript)
+    ◍ json-lsp jsonls (keywords: json)
+    ◍ marksman (keywords: markdown)
+    ◍ postgres-language-server postgres_lsp (keywords: postgres, sql)
+    ◍ powershell-editor-services powershell_es (keywords: powershell)
+    ◍ prettier (keywords: angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml)
+    ◍ prettierd (keywords: angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml)
+    ◍ pyright (keywords: python)
+    ◍ python-lsp-server pylsp (keywords: python)
+    ◍ texlab (keywords: latex)
+    ◍ ts-standard (keywords: typescript)
+    ◍ tsgo (keywords: typescript, javascript)
+    ◍ typescript-language-server ts_ls (keywords: typescript, javascript)
+    ◍ vim-language-server vimls (keywords: vimscript)
+    ◍ vscode-java-decompiler (keywords: java)
+    ◍ vscode-spring-boot-tools (keywords: java)
+
+```

@@ -12,22 +12,13 @@ return {
 			wrap = true,
 			always_trigger = false,
 			extra_trigger_chars = { "<", "(", "," },
-			toggle_key = "<C-x>",
-			-- o toggle key para ver mais linhas é Crtl s
-			-- 🔹 parâmetros estáveis
-			doc_lines = 0, -- número fixo de linhas de doc
-			max_height = 1, -- altura máxima da janela
-			max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.9), -- largura proporcional à janela
-
-			handler_opts = {
-				border = "rounded",
-				zindex = 50,
-			},
+			toggle_key = "<C-x>", -- Ctrl+x para alternar janela
+			doc_lines = 0,
+			max_height = 1,
+			max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.9),
+			handler_opts = { border = "rounded" },
 			padding = " ",
 			transparency = 10,
-			shadow_blend = 20,
-			shadow_guibg = "#1e1e2e",
-			hi_parameter = "LspSignatureActiveParameter",
 		})
 	end,
 }
