@@ -1,4 +1,3 @@
-
 # Objetos HTML básicos para uso em React
 
 Elementos HTML fundamentais utilizados na construção de interfaces em React, com foco em uso prático, semântica e boas práticas.
@@ -11,9 +10,9 @@ São elementos HTML nativos (`div`, `span`, `button`, etc.) usados dentro de JSX
 
 Em React, eles:
 
-* São escritos como JSX
-* Aceitam props em formato camelCase
-* Podem ser combinados com lógica JavaScript
+- São escritos como JSX
+- Aceitam props em formato camelCase
+- Podem ser combinados com lógica JavaScript
 
 ---
 
@@ -33,18 +32,18 @@ React não cria novos elementos HTML — ele apenas **declara como o DOM deve se
 
 ## Quando usar
 
-* Construção de layouts
-* Estruturação semântica
-* Inputs e interações do usuário
-* Renderização de texto e mídia
+- Construção de layouts
+- Estruturação semântica
+- Inputs e interações do usuário
+- Renderização de texto e mídia
 
 ---
 
 ## Quando NÃO usar
 
-* Quando existe um componente reutilizável mais semântico
-* Quando o elemento quebra acessibilidade
-* Quando um componente abstraído já resolve o problema
+- Quando existe um componente reutilizável mais semântico
+- Quando o elemento quebra acessibilidade
+- Quando um componente abstraído já resolve o problema
 
 ---
 
@@ -253,11 +252,11 @@ Eventos em camelCase.
 
 ## Resumo rápido
 
-* JSX usa HTML nativo
-* Props usam camelCase
-* Semântica importa
-* Acessibilidade é responsabilidade do dev
-* React não muda o HTML, só declara o DOM
+- JSX usa HTML nativo
+- Props usam camelCase
+- Semântica importa
+- Acessibilidade é responsabilidade do dev
+- React não muda o HTML, só declara o DOM
 
 # Gemini Reply:
 
@@ -265,35 +264,38 @@ Eventos em camelCase.
 
 ### 2.1 Elementos de Estrutura e Container
 
-* **div**: Elemento de bloco genérico para agrupamento.
-* **span**: Elemento de linha para estilização de fragmentos.
-* **Fragment (<> ou <React.Fragment>)**: Agrupador lógico que evita a criação de nós extras no DOM.
+- **div**: Elemento de bloco genérico para agrupamento.
+- **span**: Elemento de linha para estilização de fragmentos.
+- **Fragment (<> ou <React.Fragment>)**: Agrupador lógico que evita a criação de nós extras no DOM.
 
 ### 2.2 Formulários e Entrada de Dados
 
-* **form**: Container de formulário associado ao evento `onSubmit`.
-* **input**: Campo de entrada auto-fechado. Atributos: `type`, `value`, `onChange`.
-* **label**: Rótulo de campo. Utiliza `htmlFor` em vez de `for`.
-* **textarea**: Campo de texto multilinha com estado gerenciado por `value`.
-* **select / option**: Listas de seleção controladas pelo `value` do pai.
-* **button**: Gatilho de interação via evento `onClick`.
+- **form**: Container de formulário associado ao evento `onSubmit`.
+- **input**: Campo de entrada auto-fechado. Atributos: `type`, `value`, `onChange`.
+- **label**: Rótulo de campo. Utiliza `htmlFor` em vez de `for`.
+- **textarea**: Campo de texto multilinha com estado gerenciado por `value`.
+- **select / option**: Listas de seleção controladas pelo `value` do pai.
+- **button**: Gatilho de interação via evento `onClick`.
 
 ### 2.3 Texto e Mídia
 
-* **h1 - h6**: Hierarquia de cabeçalhos.
-* **p**: Definição de parágrafos.
-* **a**: Hiperlinks (em SPAs, frequentemente substituído por componentes de Router).
-* **img**: Elemento auto-fechado. Requer atributos `src` e `alt`.
+- **h1 - h6**: Hierarquia de cabeçalhos.
+- **p**: Definição de parágrafos.
+- **a**: Hiperlinks (em SPAs, frequentemente substituído por componentes de Router).
+- **img**: Elemento auto-fechado. Requer atributos `src` e `alt`.
 
 ### 2.4 Listas e Tabelas
 
-* **ul / ol / li**: Estruturas de listas. Itens iterados exigem a prop `key`.
-* **table / tr / td / th**: Estrutura para representação de dados tabulares.
+- **ul / ol / li**: Estruturas de listas. Itens iterados exigem a prop `key`.
+- **table / tr / td / th**: Estrutura para representação de dados tabulares.
 
 ### 2.5 Especificações Técnicas JSX
 
-* **Atributos**: Devem seguir o padrão camelCase (ex: `className`, `tabIndex`).
-* **Inline Styles**: Recebem objetos literais (ex: `style={{ color: 'red' }}`).
-* **Fechamento**: Tags sem conteúdo devem ser obrigatoriamente auto-fechadas (ex: `<br />`).
-* **dangerouslySetInnerHTML**: Atributo para inserção de HTML bruto sob risco de segurança.
+- **Atributos**: Devem seguir o padrão camelCase (ex: `className`, `tabIndex`).
+- **Inline Styles**: Recebem objetos literais (ex: `style={{ color: 'red' }}`).
+- **Fechamento**: Tags sem conteúdo devem ser obrigatoriamente auto-fechadas (ex: `<br />`).
+- **dangerouslySetInnerHTML**: Atributo para inserção de HTML bruto sob risco de segurança.
 
+# Importante: Mozilla web docs (MDN)
+
+### Uma das ferramentas que provavelmente serão das mais importantes durante a minha jornada no momento, será o Mozilla Web Docs. Este é um site onde eu posso encontrar diversas coisas importantes sobre HTML, inclusive uma tabela inteira contendo todos os elementos HTML que existem atualmente, para que eu possa não só melhorar o SEO. Segue o link para o site: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
