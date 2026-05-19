@@ -1,5 +1,7 @@
 # My Nvim
 
+## This is the new branch: dev-arch-linux. This is a specific branch made for my cachy-os interactions. This will be heavily modded. when compared to the other branches.
+
 ### this is my version of nvim, that I just recently started working on.
 
 As of now, I am still making some baby steps on vim motions, so I do not have a lot going on, but soon I will indeed have a bit more.
@@ -31,8 +33,10 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
 22. zoxide
 23. neoscroll (sometimes)
 24. autotag
+25. colorscheme(I do have a lot of those :D)
+26. fine-cmdline
+27. image.lua (for now it exists, not used currently)
 ```
-
 
 ## Mason installed stuff:
 
@@ -68,5 +72,4 @@ As of now, I am still making some baby steps on vim motions, so I do not have a 
     ◍ vim-language-server vimls (keywords: vimscript)
     ◍ vscode-java-decompiler (keywords: java)
     ◍ vscode-spring-boot-tools (keywords: java)
-
 ```
