@@ -21,12 +21,9 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.tabstop = 2                                     -- Define o número de espaços que um tab ocupa
-vim.opt.shiftwidth = 2                                  -- Define o número de espaços usados para cada nível de indentação
-vim.opt.expandtab = true                                -- Converte tabs em espaços
--- Customize indent line colors
-vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3a3a3a" }) -- Dark gray for normal indent
-vim.api.nvim_set_hl(0, "IblScope", { fg = "#5f87af" })  -- Blue for scope
+vim.opt.tabstop = 2 -- Define o número de espaços que um tab ocupa
+vim.opt.shiftwidth = 2 -- Define o número de espaços usados para cada nível de indentação
+vim.opt.expandtab = true -- Converte tabs em espaços
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
@@ -40,8 +37,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       "TelescopeBorder",
       "EndOfBuffer",
       -- ADICIONE ESTES AQUI:
-      "NeoTreeNormal",    -- Fundo da janela do Neo-tree
-      "NeoTreeNormalNC",  -- Fundo do Neo-tree quando não está em foco
+      "NeoTreeNormal", -- Fundo da janela do Neo-tree
+      "NeoTreeNormalNC", -- Fundo do Neo-tree quando não está em foco
       "NeoTreeEndOfBuffer", -- O espaço vazio no final do Neo-tree
       "NeoTreeWinSeparator", -- A borda que separa o Neo-tree do código
     }
