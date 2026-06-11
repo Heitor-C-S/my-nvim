@@ -3,13 +3,12 @@
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- save file
 vim.keymap.set("n", "<M-s>", "<cmd> w! <CR>", opts)
 
 -- alt + q exit's
-vim.keymap.set("n", "<M-q>", "<cmd> exit <CR>", opts)
+vim.keymap.set("n", "<M-q>", "<cmd> q! <CR>", opts)
 
 -- exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], {
