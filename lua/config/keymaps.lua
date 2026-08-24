@@ -36,6 +36,16 @@ vim.keymap.set("n", "<leader>bdf", "<cmd>bd!<CR>", { desc = "[B]uffer [D]elete [
 -- create new empty buffer
 vim.keymap.set("n", "<leader>bn", "<cmd>bn<CR>", { desc = "Create [B]uffer [N]ew" })
 
+-- set command root to this buffer directory
+vim.keymap.set("n", "<leader>ncr", function()
+  vim.cmd("cd %:p:h")
+end, { desc = "[N]ew [C]ommand [R]oot (current buffer directory)" })
+
+-- set previous directory as command root (duh)
+vim.keymap.set("n", "<leader>pdr", function()
+  vim.cmd("cd ..")
+end, { desc = "[P]revious [D]irectory as Command [R]oot" })
+
 -- Docker Refresh (need a compose.yaml file)
 -- Use o comando completo para evitar ambiguidade com outros plugins
 vim.keymap.set(

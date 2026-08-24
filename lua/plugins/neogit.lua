@@ -7,7 +7,7 @@ return {
     -- Apenas um desses é necessário.
     "nvim-telescope/telescope.nvim", -- Opcional
     "ibhagwan/fzf-lua", -- Opcional
-    "echasnovski/mini.pick", -- Opcional
+    "nvim-mini/mini.pick", -- Opcional
   },
   config = function()
     local neogit = require("neogit")
